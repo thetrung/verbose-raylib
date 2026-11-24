@@ -1,0 +1,12 @@
+[package]
+name = "verbose-raylib"
+version = "0.1.0"
+description = "Idiomatic VerBose-Lang + C ABI wrapper for Raylib 5.x / 6.x"
+license = "MIT"
+repository = "https://github.com/thetrung/verbose-raylib"
+
+[lib]
+include_dir = "src"
+entry = "raylib.vb"
+c_sources = ["csrc/verbose_raylib_shim.c"]
+c_libs = ["raylib", "m"]
