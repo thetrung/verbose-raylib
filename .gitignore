@@ -3,3 +3,7 @@ build/
 *.o
 *.s
 .vpkg/
+
+demos/01_particle_arena
+demos/02_solar_system_3d
+demos/03_arcade_breakout
