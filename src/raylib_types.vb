@@ -85,6 +85,11 @@ Public Structure BoundingBox
   Dim min, max As Vector3
 End Structure
 
+Public Structure FilePathList
+  Dim count As Integer
+  Dim paths As Pointer
+End Structure
+
 Public Structure Shader
   Dim id As Integer
   Dim locs As Pointer
@@ -128,6 +133,7 @@ Public Enum ConfigFlags
   FLAG_WINDOW_ALWAYS_RUN = 0x00000100
   FLAG_WINDOW_TRANSPARENT = 0x00000010
   FLAG_WINDOW_HIGHDPI = 0x00002000
+  FLAG_BORDERLESS_WINDOWED_MODE = 0x00008000
   FLAG_MSAA_4X_HINT = 0x00000020
   FLAG_INTERLACED_HINT = 0x00010000
 End Enum

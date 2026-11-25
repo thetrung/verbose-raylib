@@ -1,5 +1,5 @@
 ' verbose-raylib — Idiomatic VerBose Color Palette & Helpers
-Include "raylib_ffi.vb"
+Include "raylib_types.vb"
 
 Public Function RlRgba(r, g, b, a As Integer) As Color
   Dim c As Color With (

@@ -13,9 +13,12 @@ Declare Function GetRenderWidth() As Integer
 Declare Function GetRenderHeight() As Integer
 Declare Sub SetWindowTitle(title As String)
 Declare Sub SetWindowSize(width, height As Integer)
+Declare Sub SetWindowMinSize(width, height As Integer)
+Declare Sub SetWindowMaxSize(width, height As Integer)
 Declare Sub SetConfigFlags(flags As Integer)
 Declare Sub SetTraceLogLevel(logLevel As Integer)
 Declare Sub ToggleFullscreen()
+Declare Sub ToggleBorderlessWindowed()
 
 ' --- Timing ---
 Declare Sub SetTargetFPS(fps As Integer)
@@ -78,6 +81,7 @@ Declare Sub DrawLineEx(startPos, endPos As Vector2, thick As Single, color As Co
 Declare Sub DrawLineBezier(startPos, endPos As Vector2, thick As Single, color As Color)
 Declare Sub DrawCircle(centerX, centerY As Integer, radius As Single, color As Color)
 Declare Sub DrawCircleV(center As Vector2, radius As Single, color As Color)
+Declare Sub DrawCircleGradient(center As Vector2, radius As Single, inner, outer As Color)
 Declare Sub DrawCircleLines(centerX, centerY As Integer, radius As Single, color As Color)
 Declare Sub DrawCircleLinesV(center As Vector2, radius As Single, color As Color)
 Declare Sub DrawRing(center As Vector2, innerRadius, outerRadius, startAngle, endAngle As Single, segments As Integer, color As Color)
@@ -184,6 +188,8 @@ Declare Function GetRandomValue(minVal, maxVal As Integer) As Integer
 Declare Sub SetRandomSeed(seed As Integer)
 Declare Sub TakeScreenshot(fileName As String)
 Declare Function IsFileDropped() As Boolean
+Declare Function LoadDroppedFiles() As FilePathList
+Declare Sub UnloadDroppedFiles(files As FilePathList)
 
 ' --- C Math (Single-precision, linked via -lm) ---
 Declare Function sqrtf(x As Single) As Single
@@ -192,25 +198,3 @@ Declare Function cosf(x As Single) As Single
 Declare Function atan2f(y, x As Single) As Single
 Declare Function fabsf(x As Single) As Single
 Declare Function fmodf(x, y As Single) As Single
-
-' --- Optional C Shim Bridges (csrc/verbose_raylib_shim.c) ---
-' Bridges Raylib 5.x / 6.x API differences & provides ABI/helper utilities
-Declare Sub RlShimDrawCircleGradient(cx, cy, radius As Single, inner, outer As Color)
-Declare Function RlShimPollDroppedFile(outPath As Pointer, cap As Integer) As Integer
-Declare Function RlShimRandomFloat(minVal, maxVal As Single) As Single
-Declare Function RlShimIntToFloat(v As Integer) As Single
-Declare Function RlShimFloatToInt(v As Single) As Integer
-Declare Function RlShimClampByte(v As Integer) As Byte
-Declare Function RlShimVersionString() As String
-Declare Function RlShimSizeOfColor() As Integer
-Declare Function RlShimSizeOfVector2() As Integer
-Declare Function RlShimSizeOfVector3() As Integer
-Declare Function RlShimSizeOfRectangle() As Integer
-Declare Function RlShimSizeOfCamera2D() As Integer
-Declare Function RlShimSizeOfCamera3D() As Integer
-Declare Function RlShimSizeOfRay() As Integer
-Declare Function RlShimSizeOfRayCollision() As Integer
-Declare Function RlShimSizeOfTexture2D() As Integer
-Declare Function RlShimSizeOfRenderTexture2D() As Integer
-Declare Function RlShimSizeOfFont() As Integer
-Declare Function RlShimSizeOfSound() As Integer

@@ -1,5 +1,5 @@
 ' verbose-raylib — Idiomatic VerBose 2D/3D Vector, Rectangle & Scalar Math Helpers
-Include "raylib_ffi.vb"
+Include "raylib_types.vb"
 
 Public Static RL_PI As Single = 3.14159265
 Public Static RL_TAU As Single = 6.28318530
