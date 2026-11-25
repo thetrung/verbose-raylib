@@ -527,6 +527,16 @@ Public Sub DrawCircle3D(p As Vector3, r As Single, ax As Vector3, ang As Single,
   g_mockDrawCalls = g_mockDrawCalls + 1
 End Sub
 
+Public Sub DrawTriangle3D(v1, v2, v3 As Vector3, c As Color)
+  g_mockDrawCalls = g_mockDrawCalls + 1
+End Sub
+
+Public Sub rlDisableBackfaceCulling()
+End Sub
+
+Public Sub rlEnableBackfaceCulling()
+End Sub
+
 Public Sub DrawCube(p As Vector3, w, h, l As Single, c As Color)
   g_mockDrawCalls = g_mockDrawCalls + 1
 End Sub
