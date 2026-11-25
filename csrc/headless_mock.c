@@ -174,8 +174,13 @@ int MeasureText(const char *text, int fs) { return text ? (int)strlen(text) * (f
 Vector2 MeasureTextEx(Font f, const char *t, float fs, float sp) { (void)f; (void)sp; Vector2 v = { (float)MeasureText(t, (int)fs), fs }; return v; }
 Font GetFontDefault(void) { Font f = { 0 }; f.baseSize = 10; return f; }
 
+Image GenImageColor(int w, int h, Color c) { (void)c; Image img = { NULL, w, h, 1, 7 }; return img; }
+void UnloadImage(Image img) { (void)img; }
 Texture2D LoadTexture(const char *f) { (void)f; Texture2D t = { 1, 64, 64, 1, 7 }; return t; }
+Texture2D LoadTextureFromImage(Image img) { Texture2D t = { 1, img.width, img.height, 1, img.format }; return t; }
 void UnloadTexture(Texture2D t) { (void)t; }
+void UpdateTexture(Texture2D t, const void *pixels) { (void)t; (void)pixels; }
+void SetTextureFilter(Texture2D t, int filter) { (void)t; (void)filter; }
 void DrawTexture(Texture2D t, int x, int y, Color c) { (void)t; (void)x; (void)y; (void)c; g_draw_calls++; }
 void DrawTextureV(Texture2D t, Vector2 p, Color c) { (void)t; (void)p; (void)c; g_draw_calls++; }
 void DrawTextureEx(Texture2D t, Vector2 p, float r, float s, Color c) { (void)t; (void)p; (void)r; (void)s; (void)c; g_draw_calls++; }
@@ -265,8 +270,10 @@ int GetRandomValue(int minVal, int maxVal) {
 }
 void SetRandomSeed(unsigned int seed) { g_rng = seed; }
 void TakeScreenshot(const char *f) { (void)f; }
+bool IsFileDropped(void) { return false; }
 
 // Shim functions for headless mode
+int RlShimPollDroppedFile(char *outPath, int cap) { (void)outPath; (void)cap; return 0; }
 void RlShimDrawCircleGradient(float cx, float cy, float r, Color in, Color out) { (void)cx; (void)cy; (void)r; (void)in; (void)out; g_draw_calls++; }
 float RlShimRandomFloat(float lo, float hi) { return lo + (hi - lo) * ((float)(GetRandomValue(0, 10000)) / 10000.0f); }
 float RlShimIntToFloat(int v) { return (float)v; }

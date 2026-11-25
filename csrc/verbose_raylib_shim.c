@@ -1,6 +1,20 @@
 // verbose-raylib — Lightweight C ABI & Compatibility Shim for Raylib 5.x / 6.x
 #include <raylib.h>
 #include <stdint.h>
+#include <stdio.h>
+
+int RlShimPollDroppedFile(char *outPath, int cap) {
+    if (!outPath || cap <= 1) return 0;
+    if (!IsFileDropped()) return 0;
+    FilePathList files = LoadDroppedFiles();
+    int found = 0;
+    if (files.count > 0 && files.paths && files.paths[0]) {
+        snprintf(outPath, (size_t)cap, "%s", files.paths[0]);
+        found = 1;
+    }
+    UnloadDroppedFiles(files);
+    return found;
+}
 
 void RlShimDrawCircleGradient(float cx, float cy, float radius, Color inner, Color outer) {
 #if defined(RAYLIB_VERSION_MAJOR) && RAYLIB_VERSION_MAJOR >= 6

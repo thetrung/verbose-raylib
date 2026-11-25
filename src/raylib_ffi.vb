@@ -114,9 +114,14 @@ Declare Function MeasureText(text As String, fontSize As Integer) As Integer
 Declare Function MeasureTextEx(font As Font, text As String, fontSize, spacing As Single) As Vector2
 Declare Function GetFontDefault() As Font
 
-' --- Textures & RenderTextures ---
+' --- Images, Textures & RenderTextures ---
+Declare Function GenImageColor(width, height As Integer, color As Color) As Image
+Declare Sub UnloadImage(image As Image)
 Declare Function LoadTexture(fileName As String) As Texture2D
+Declare Function LoadTextureFromImage(image As Image) As Texture2D
 Declare Sub UnloadTexture(texture As Texture2D)
+Declare Sub UpdateTexture(texture As Texture2D, pixels As Pointer)
+Declare Sub SetTextureFilter(texture As Texture2D, filter As Integer)
 Declare Sub DrawTexture(texture As Texture2D, posX, posY As Integer, tint As Color)
 Declare Sub DrawTextureV(texture As Texture2D, position As Vector2, tint As Color)
 Declare Sub DrawTextureEx(texture As Texture2D, position As Vector2, rotation, scale As Single, tint As Color)
@@ -174,10 +179,11 @@ Declare Function IsSoundPlaying(sound As Sound) As Boolean
 Declare Sub SetSoundVolume(sound As Sound, volume As Single)
 Declare Sub SetSoundPitch(sound As Sound, pitch As Single)
 
-' --- Random & Misc ---
+' --- Random, Files & Misc ---
 Declare Function GetRandomValue(minVal, maxVal As Integer) As Integer
 Declare Sub SetRandomSeed(seed As Integer)
 Declare Sub TakeScreenshot(fileName As String)
+Declare Function IsFileDropped() As Boolean
 
 ' --- C Math (Single-precision, linked via -lm) ---
 Declare Function sqrtf(x As Single) As Single
@@ -190,6 +196,7 @@ Declare Function fmodf(x, y As Single) As Single
 ' --- Optional C Shim Bridges (csrc/verbose_raylib_shim.c) ---
 ' Bridges Raylib 5.x / 6.x API differences & provides ABI/helper utilities
 Declare Sub RlShimDrawCircleGradient(cx, cy, radius As Single, inner, outer As Color)
+Declare Function RlShimPollDroppedFile(outPath As Pointer, cap As Integer) As Integer
 Declare Function RlShimRandomFloat(minVal, maxVal As Single) As Single
 Declare Function RlShimIntToFloat(v As Integer) As Single
 Declare Function RlShimFloatToInt(v As Single) As Integer
